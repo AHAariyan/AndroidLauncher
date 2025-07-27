@@ -1,4 +1,13 @@
+
+
 pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
+}
+
+dependencyResolutionManagement {
     repositories {
         google {
             content {
@@ -8,17 +17,13 @@ pluginManagement {
             }
         }
         mavenCentral()
-        gradlePluginPortal()
     }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
     }
 }
 
-rootProject.name = "AndroidLauncher"
-include(":app")
-include(":build-logic:convention")
+rootProject.name = "build-logic"
+include(":convention")
